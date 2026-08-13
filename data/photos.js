@@ -7,20 +7,26 @@
      2. Add or uncomment its line below.
      3. Save, refresh.
 
-   Days not listed here still count as completed once they pass —
-   the calendar sheet shows status by colour, not by picture.
+   A day with a photo shows it in its frame on the calendar sheet.
+   Days without one stay a plain colour until you add them.
    Nobody but you can add photos; the page has no upload.
+
+   Optional: add  thumb: 'photos/002-small.jpg'  to any entry and the
+   calendar sheet will load that instead of the full-size file.
    ============================================================ */
 
 window.Roll = window.Roll || {};
 
-// placeholder standing in for both days until the real photos exist
-const PLACEHOLDER = 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/pop/day1.jpg';
-
 window.Roll.PHOTOS = {
 
-  1: { file: PLACEHOLDER, caption: 'First day of our senior year!' },
-  2: { file: PLACEHOLDER, caption: '' },
+  1: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/pop/day1.jpg',
+    caption: 'First day of our senior year!'
+  },
+  2: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/pop/day2.jpg',
+    caption: 'The three spider-woman!'
+  },
 
   // 3: { file: 'photos/003.jpg', caption: '' },
 

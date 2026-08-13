@@ -88,7 +88,6 @@
   .count__num{ font-size:clamp(1.8rem, 8.5vw, 2.6rem); }
   .count__lbl{ font-size:.68rem; letter-spacing:.14em; }
 
-  .roll__key{ gap:.7rem 1rem; font-size:.63rem; }
   .lb__bar{ justify-content:stretch; }
   .lb__bar .btn{ flex:1 1 auto; }
 
@@ -112,9 +111,6 @@
   }
 }
 
-/* a full screen is a lot less tall on a phone: trim the section
-   padding and the day panel's gaps so nothing has to be scrolled
-   past to reach the point of the section */
 /* short windows get tighter section padding at any width — this is
    about vertical room, not screen size */
 @media (max-height: 700px){

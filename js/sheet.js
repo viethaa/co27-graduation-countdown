@@ -33,9 +33,20 @@
       cell.setAttribute('role', 'listitem');
       if (date.getUTCDate() === 1) cell.classList.add('cell--month');
 
-      // no thumbnails here on purpose — a frame's colour is its status,
-      // and 297 tiny photos read as noise rather than progress
       const label = `Day ${T.pad3(n)} · ${T.tiny(date)}`;
+
+      // a day's photo fills its frame, so the sheet reads as a strip of
+      // film; days without one fall back to their status colour
+      const p = S.photoFor(n);
+      if (p) {
+        const img = document.createElement('img');
+        img.src = p.thumb || p.file;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.addEventListener('error', () => cell.classList.add('is-broken'));
+        cell.appendChild(img);
+      }
 
       if (past) {
         cell.type = 'button';
