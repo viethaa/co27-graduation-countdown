@@ -1,0 +1,138 @@
+/* ============================================================
+   DAY PANEL — one school day at a time, with arrows back through
+   every day already lived.
+   ============================================================ */
+
+/* grid rather than the section's flex column, so the two halves sit
+   side by side; align-content centres them in the full-screen section */
+.day{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
+  gap:clamp(1.5rem,4vw,4rem);
+  align-content:center;
+  align-items:center;
+}
+
+.day__label{
+  margin:0 0 .9rem;
+  font-family:var(--font-mono);
+  font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--slate);
+}
+
+/* the number, flanked by its two arrows */
+.day__nav{
+  display:flex;
+  align-items:center;
+  gap:clamp(.6rem,2vw,1.1rem);
+}
+
+.day__num{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(3.2rem,8vw,5.5rem);
+  line-height:.9;
+  letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;
+  color:var(--jade);
+}
+
+.daybtn{
+  width:clamp(2.4rem,5vw,3rem);
+  height:clamp(2.4rem,5vw,3rem);
+  flex:none;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  background:transparent;
+  color:var(--ink);
+  font-family:var(--font-mono);
+  font-size:1.1rem;
+  line-height:1;
+  cursor:pointer;
+  transition:background .16s ease, color .16s ease, border-color .16s ease;
+}
+.daybtn:hover:not(:disabled){
+  background:var(--ink); color:var(--paper); border-color:var(--ink);
+}
+.daybtn:disabled{ opacity:.22; cursor:default; }
+
+.day__date{
+  margin:.85rem 0 0;
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1.05rem,2vw,1.4rem);
+  letter-spacing:-.01em;
+}
+
+.day__hint{
+  margin:.6rem 0 0;
+  color:var(--slate);
+  max-width:32ch;
+  font-size:.92rem;
+}
+/* no empty line holding space open on days that have a photo */
+.day__hint:empty{ display:none; }
+
+.day__today{
+  margin-top:1rem;
+  border:0; background:none; padding:0;
+  font-family:var(--font-mono);
+  font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--amber);
+  cursor:pointer;
+  text-decoration:underline; text-underline-offset:4px;
+}
+.day__today[hidden]{ display:none; }
+
+/* ─── the photo, mounted as a single oversized frame ─── */
+
+.plate{ margin:0; }
+
+.plate__inner{
+  aspect-ratio:3/2;
+  background:var(--ink);
+  padding:10px;
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.plate__inner::before,
+.plate__inner::after{
+  content:""; position:absolute; left:0; right:0; height:10px;
+  background-image:linear-gradient(90deg, var(--paper) 45%, transparent 0);
+  background-size:16px 100%;
+  opacity:.5;
+}
+.plate__inner::before{ top:0; }
+.plate__inner::after{ bottom:0; }
+
+.plate__open{
+  display:block; width:100%; height:100%;
+  padding:0; border:0; background:none; cursor:zoom-in;
+}
+.plate__inner img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.plate__empty{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.7rem; width:100%; height:100%;
+  border:1px dashed color-mix(in srgb, var(--paper) 26%, transparent);
+  color:var(--slate-lo);
+  /* faint diagonal tooth, like an unexposed negative */
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent 0 9px,
+    color-mix(in srgb, var(--paper) 4%, transparent) 9px 18px
+  );
+}
+.plate__empty-mark{ font-size:1.9rem; line-height:1; color:var(--marigold); opacity:.75; }
+.plate__empty-text{
+  font-family:var(--font-mono);
+  font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+}
+
+.plate__cap{
+  margin:.85rem 0 0;
+  color:var(--slate);
+  font-size:.92rem;
+  max-width:46ch;
+}
+.plate__cap:empty{ display:none; }

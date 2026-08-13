@@ -1,0 +1,44 @@
+/* ============================================================
+   FOOTER — credit line and the link to the source.
+   ============================================================ */
+
+.foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem 1.5rem;
+  flex-wrap:wrap;
+  padding:1.8rem var(--pad) 2.4rem;
+  border-top:var(--rule);
+}
+
+.foot__copy{
+  margin:0;
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  color:var(--slate);
+}
+
+.foot__repo{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.6rem 1rem;
+  border:1px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  color:var(--ink);
+  text-decoration:none;
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:background .16s ease, color .16s ease, border-color .16s ease;
+}
+.foot__repo:hover{
+  background:var(--ink);
+  color:var(--paper);
+  border-color:var(--ink);
+}
+
+.foot__icon{ flex:none; display:block; }

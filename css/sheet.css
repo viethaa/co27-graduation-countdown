@@ -1,0 +1,109 @@
+/* ============================================================
+   CONTACT SHEET — the whole year as one object.
+   A frame's colour is its status: completed, today, remaining.
+   ============================================================ */
+
+.roll{ padding:clamp(2.25rem,5vw,4rem) var(--pad) clamp(2.5rem,6vw,5rem); }
+
+.roll__head{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:1rem 2rem; flex-wrap:wrap; margin-bottom:1.4rem;
+}
+.roll__title{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.3rem,2.8vw,2rem);
+  letter-spacing:-.025em;
+}
+
+.roll__key{
+  margin:0; display:flex; gap:1.1rem; flex-wrap:wrap;
+  font-family:var(--font-mono); font-size:.68rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--slate);
+}
+.key{ display:inline-flex; align-items:center; gap:.4rem; }
+.sw{ width:11px; height:8px; display:inline-block; }
+.sw--done{ background:var(--jade); }
+.sw--today{ background:var(--marigold); }
+.sw--remaining{ background:var(--frame); }
+
+.sheet{
+  background:var(--ink);
+  box-shadow:0 22px 50px -28px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+/* film rebate: sprocket holes and edge markings */
+.rebate{
+  display:flex; align-items:center;
+  height:30px; padding:0 12px;
+  position:relative; overflow:hidden;
+}
+.rebate::before{
+  content:""; position:absolute; inset:0;
+  background-image:linear-gradient(90deg, var(--paper) 40%, transparent 0);
+  background-size:18px 100%;
+  opacity:.16;
+}
+.rebate__text{
+  position:relative;
+  font-family:var(--font-mono);
+  font-size:.64rem; letter-spacing:.22em;
+  color:var(--marigold);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.rebate--bottom .rebate__text{ color:var(--slate-lo); }
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(clamp(30px, 4.4vw, 52px), 1fr));
+  gap:4px;
+  padding:12px;
+}
+
+.cell{
+  aspect-ratio:3/2;
+  background:var(--frame);
+  border:0; padding:0; margin:0;
+  position:relative; overflow:hidden;
+  cursor:default;
+  outline:1px solid transparent;
+  transition:transform .16s ease, outline-color .16s ease, background .16s ease;
+}
+/* status is the whole content of a frame — no images live in here */
+.cell--done{ background:var(--jade); cursor:pointer; }
+.cell--done:hover{ transform:scale(1.35); z-index:5; outline-color:var(--marigold); }
+
+.cell--today{
+  background:var(--marigold);
+  cursor:pointer;
+  outline:2px solid var(--marigold);
+  outline-offset:2px;
+  z-index:4;
+}
+.cell--today::after{
+  content:""; position:absolute; inset:0;
+  animation:pulse 2.6s ease-out infinite;
+}
+@keyframes pulse{
+  0%   { box-shadow:0 0 0 0 color-mix(in srgb, var(--marigold) 60%, transparent); }
+  70%  { box-shadow:0 0 0 9px transparent; }
+  100% { box-shadow:0 0 0 0 transparent; }
+}
+
+.cell--remaining{ background:color-mix(in srgb, var(--frame) 26%, var(--ink)); }
+
+/* the day currently open in the panel above */
+.cell.is-selected{
+  outline:2px solid var(--paper);
+  outline-offset:2px;
+  z-index:6;
+}
+
+/* month edges read as the film's frame markings */
+.cell--month::before{
+  content:"";
+  position:absolute; left:-3px; top:0; bottom:0; width:1px;
+  background:color-mix(in srgb, var(--marigold) 55%, transparent);
+}
+

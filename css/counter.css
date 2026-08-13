@@ -1,0 +1,81 @@
+/* ============================================================
+   COUNTER — the days figure reads as a phrase ("295 DAYS"), with
+   the finer units grounded beneath it as a full-width strip.
+   Big, but sitting on something rather than floating.
+   ============================================================ */
+
+.count{ display:flex; flex-direction:column; }
+
+.count__lead{
+  display:flex;
+  align-items:baseline;
+  gap:clamp(1rem, 3.2vw, 2.6rem);
+  flex-wrap:wrap;
+}
+
+.count__days{
+  font-family:var(--font-mono);
+  font-weight:500;
+  font-size:clamp(5rem, 17vw, 13.5rem);
+  line-height:.86;
+  letter-spacing:-.06em;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+
+.count__days-lbl{
+  font-family:var(--font-mono);
+  font-weight:500;
+  /* nearly the weight of the figure itself, and amber so it reads as
+     a different colour beside near-black rather than blending in */
+  font-size:clamp(2.7rem, 9.2vw, 7.4rem);
+  letter-spacing:.01em;
+  /* DM Mono gives the space a full character advance, which reads as a
+     gap at this size — pull the two words back together */
+  word-spacing:-.36em;
+  text-transform:uppercase;
+  color:var(--amber);
+}
+
+/* the readout strip: three cells, hairline-divided, on a marigold rule */
+.count__rest{
+  display:flex;
+  margin-top:clamp(.7rem, 1.8vw, 1.2rem);
+  border-top:3px solid var(--marigold);
+  border-bottom:var(--hair);
+}
+
+.count__row{
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  gap:clamp(.4rem, 1.2vw, .8rem);
+  padding:clamp(.75rem, 1.8vw, 1.15rem) clamp(.5rem, 1.6vw, 1.3rem);
+  border-left:var(--hair);
+}
+.count__row:first-child{ border-left:0; padding-left:0; }
+
+.count__num{
+  font-family:var(--font-mono);
+  font-weight:500;
+  font-size:clamp(1.9rem, 4.4vw, 3.2rem);
+  line-height:1;
+  letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+
+.count__lbl{
+  font-family:var(--font-mono);
+  font-weight:500;
+  font-size:clamp(.72rem, 1.3vw, 1rem);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--slate);
+  line-height:1.2;
+}
+
+/* seconds are the only live digits, so the digits carry the colour —
+   the label stays quiet so it doesn't compete with DAYS above */
+.count__row--live .count__num{ color:var(--jade); }

@@ -1,0 +1,159 @@
+/* ============================================================
+   RESPONSIVE — loaded last so these overrides always win.
+   ============================================================ */
+
+/* ─────────────────────────────────────────────────────────────
+   SCHOOL DAY, ONE COLUMN
+   The desktop two-column layout can't just be stacked: the arrows
+   end up floating beside a big number with the photo above, and it
+   reads as loose parts. Rebuilt here as a centred stepper — label,
+   then a bordered ← 002 → bar, then the date, then the photo —
+   so it reads top to bottom as one control.
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 860px){
+  .day{
+    grid-template-columns:1fr;
+    align-content:center;
+    gap:clamp(1.1rem, 3vh, 1.6rem);
+  }
+
+  /* day identity first, photo second */
+  .day__meta{
+    order:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .day__stage{ order:2; }
+
+  .day__label{
+    text-align:center;
+    margin-bottom:.7rem;
+  }
+
+  /* arrows pinned to the edges, number locked to the centre so it
+     doesn't shift as the digits change */
+  .day__nav{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:0;
+    padding:.45rem 0;
+    border-top:var(--hair);
+    border-bottom:var(--hair);
+  }
+  .day__num{
+    text-align:center;
+    font-size:clamp(2.9rem, 13vw, 4.2rem);
+  }
+  .daybtn{
+    width:2.75rem;
+    height:2.75rem;
+    font-size:1rem;
+  }
+
+  .day__date{
+    text-align:center;
+    margin-top:.85rem;
+  }
+  .day__hint{
+    text-align:center;
+    margin-inline:auto;
+    max-width:30ch;
+  }
+  .day__today{
+    align-self:center;
+    margin-top:.85rem;
+  }
+  .plate__cap{
+    text-align:center;
+    margin-inline:auto;
+  }
+
+  .grid{ gap:3px; padding:9px; }
+}
+
+/* on a phone the three readout cells are too narrow for
+   number-beside-label, so each cell stacks its own label */
+@media (max-width: 620px){
+  .count__days{ font-size:clamp(4.5rem, 26vw, 8.5rem); }
+  .count__days-lbl{ font-size:clamp(1.9rem, 12vw, 4.2rem); }
+  .count__lead{ gap:clamp(.6rem, 3vw, 1.2rem); }
+
+  .count__row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.35rem;
+    padding-inline:clamp(.4rem, 2.5vw, .9rem);
+  }
+  .count__num{ font-size:clamp(1.8rem, 8.5vw, 2.6rem); }
+  .count__lbl{ font-size:.68rem; letter-spacing:.14em; }
+
+  .roll__key{ gap:.7rem 1rem; font-size:.63rem; }
+  .lb__bar{ justify-content:stretch; }
+  .lb__bar .btn{ flex:1 1 auto; }
+
+  /* side by side, the credit line wraps mid-sentence and the button
+     gets squeezed — stack them and let the button span the width */
+  .foot{
+    flex-direction:column;
+    align-items:stretch;
+    gap:1.1rem;
+    padding-bottom:2.8rem;
+  }
+  .foot__copy{
+    font-size:.66rem;
+    letter-spacing:.08em;
+    line-height:1.7;
+    text-align:center;
+  }
+  .foot__repo{
+    justify-content:center;
+    padding-block:.8rem;
+  }
+}
+
+/* a full screen is a lot less tall on a phone: trim the section
+   padding and the day panel's gaps so nothing has to be scrolled
+   past to reach the point of the section */
+/* short windows get tighter section padding at any width — this is
+   about vertical room, not screen size */
+@media (max-height: 700px){
+  .section{
+    padding-block:clamp(3.75rem,9vh,5rem) clamp(3.25rem,8vh,4.5rem);
+  }
+}
+
+/* type sizes for phones only, so a short desktop window keeps its
+   full-size day number and headline */
+@media (max-width: 620px){
+  .section{
+    padding-block:clamp(3.75rem,9vh,5rem) clamp(3.25rem,8vh,4.5rem);
+  }
+  .day{ gap:clamp(1rem,3vh,1.5rem); }
+  .day__date{ font-size:clamp(1rem,4vw,1.2rem); }
+  .day__hint{ font-size:.85rem; }
+  .hero__line{ margin-top:1.1rem; font-size:clamp(1.05rem,4.2vw,1.4rem); }
+}
+
+/* very short screens (landscape phones): let the sections breathe
+   naturally rather than forcing a full viewport each */
+@media (max-height: 480px){
+  .section{ min-height:auto; padding-block:3rem; }
+  .cue{ display:none; }
+}
+
+/* touch screens have no hover, so the scale-up on a frame just
+   flickers under a fingertip — the tooltip still works on tap-focus */
+@media (hover: none){
+  .cell--done:hover{ transform:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .cell--done:hover{ transform:none; }
+  html{ scroll-behavior:auto; }
+}

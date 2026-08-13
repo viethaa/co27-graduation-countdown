@@ -1,0 +1,36 @@
+/* ============================================================
+   TOOLTIP — the date for a frame, on hover or keyboard focus.
+   Positioned by transform so it never reflows the grid.
+   ============================================================ */
+
+.tip{
+  position:fixed;
+  top:0; left:0;
+  z-index:70;
+  pointer-events:none;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:.5rem .7rem;
+  white-space:nowrap;
+  box-shadow:0 8px 20px -10px color-mix(in srgb, var(--ink) 70%, transparent);
+}
+.tip[hidden]{ display:none; }
+
+/* the little pointer, flipped when the tip sits below its frame */
+.tip::after{
+  content:"";
+  position:absolute;
+  left:50%; margin-left:-4px;
+  border:4px solid transparent;
+  border-top-color:var(--ink);
+  top:100%;
+}
+.tip--below::after{
+  top:auto; bottom:100%;
+  border-top-color:transparent;
+  border-bottom-color:var(--ink);
+}

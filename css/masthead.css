@@ -1,0 +1,44 @@
+/* ============================================================
+   MASTHEAD — school name, class year, and room for a logo.
+   Fixed to the top so it stays put across the full-screen sections.
+   ============================================================ */
+
+.masthead{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  padding:.9rem var(--pad);
+  border-bottom:var(--rule);
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+.masthead__logo{
+  height:clamp(1.6rem, 3.6vw, 2.1rem);
+  width:auto;
+  display:block;
+  flex:none;
+}
+
+.masthead__school{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1rem, 2.2vw, 1.25rem);
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+
+.masthead__class{
+  margin:0 0 0 auto;
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--slate);
+  white-space:nowrap;
+}
