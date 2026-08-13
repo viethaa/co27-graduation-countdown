@@ -12,5 +12,5 @@ window.Roll.CONFIG = {
   tzOffset: 7,              // GMT+7, Indochina Time
 
   // where the "View on GitHub" button in the footer points
-  repoUrl: 'https://github.com/viethaa/senior-countdown'
+  repoUrl: 'https://github.com/viethaa/co27-graduation-countdown'
 };
