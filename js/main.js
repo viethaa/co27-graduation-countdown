@@ -19,7 +19,6 @@
     // anything printed in the HTML as a fallback gets corrected here,
     // so the page stays honest if the dates in config.js ever move
     $('finalDate').textContent = T.fmtShort.format(new Date(T.LAST_IDX * T.DAY_MS));
-    document.title = `The Roll — ${T.TOTAL_DAYS} days of senior year`;
 
     $('repoLink').href = Roll.CONFIG.repoUrl;
     $('year').textContent = new Date().getUTCFullYear();

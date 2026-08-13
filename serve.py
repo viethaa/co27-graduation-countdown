@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local dev server for The Roll.
+"""Local dev server for Senior Graduation Countdown.
 
 Plain `python3 -m http.server` lets the browser cache index.html, which
 means edits silently don't show up — and if a file was renamed, the page
@@ -31,7 +31,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8747
     handler = partial(NoCacheHandler, directory='.')
-    print(f'The Roll -> http://localhost:{port}  (ctrl-c to stop)')
+    print(f'Senior Graduation Countdown -> http://localhost:{port}  (ctrl-c to stop)')
     ThreadingHTTPServer(('', port), handler).serve_forever()
 
 
