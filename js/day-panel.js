@@ -20,11 +20,11 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'plate__open';
-      btn.setAttribute('aria-label', `Open the photo for day ${T.pad3(n)}`);
+      btn.setAttribute('aria-label', `Open the photo for day ${T.pad(n)}`);
 
       const img = document.createElement('img');
       img.src = p.file;
-      img.alt = p.caption || `Day ${T.pad3(n)} of senior year`;
+      img.alt = p.caption || `Day ${T.pad(n)} of senior year`;
       img.addEventListener('error', () => empty(n, 'Photo missing from the photos folder.'));
 
       btn.appendChild(img);
@@ -54,7 +54,7 @@
   function render() {
     const n = S.state.selected;
 
-    $('dayNum').textContent  = T.pad3(n);
+    $('dayNum').textContent  = T.pad(n);
     $('dayDate').textContent = T.fmtLong.format(T.dateOfDay(n));
 
     $('dayPrev').disabled = n <= 1;

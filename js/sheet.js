@@ -33,7 +33,7 @@
       cell.setAttribute('role', 'listitem');
       if (date.getUTCDate() === 1) cell.classList.add('cell--month');
 
-      const label = `Day ${T.pad3(n)} · ${T.tiny(date)}`;
+      const label = `Day ${T.pad(n)} · ${T.tiny(date)}`;
 
       // a day's photo fills its frame, so the sheet reads as a strip of
       // film; days without one fall back to their status colour

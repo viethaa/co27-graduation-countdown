@@ -21,8 +21,8 @@
     lastFocus = document.activeElement;
 
     $('lbImg').src = p.file;
-    $('lbImg').alt = p.caption || `Day ${T.pad3(n)} of senior year`;
-    $('lbDay').textContent  = `Day ${T.pad3(n)}`;
+    $('lbImg').alt = p.caption || `Day ${T.pad(n)} of senior year`;
+    $('lbDay').textContent  = `Day ${T.pad(n)}`;
     $('lbDate').textContent = T.fmtLong.format(T.dateOfDay(n));
     $('lbCap').textContent  = p.caption || '';
 

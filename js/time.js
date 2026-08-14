@@ -46,13 +46,13 @@
   // "Wed 12 Aug 2026" — no comma, for the mono film-edge type
   const tiny = d => fmtTiny.format(d).replace(',', '');
 
+  // two digits: 01 … 99, then 100 … 297 as they come
   const pad  = n => String(n).padStart(2, '0');
-  const pad3 = n => String(n).padStart(3, '0');
 
   Roll.time = {
     DAY_MS, FIRST_IDX, LAST_IDX, TOTAL_DAYS,
     vnNow, dayIndex, todayIndex, dateOfDay, currentDayNumber,
-    fmtLong, fmtShort, fmtTiny, tiny, pad, pad3
+    fmtLong, fmtShort, fmtTiny, tiny, pad
   };
 
 })(window.Roll);

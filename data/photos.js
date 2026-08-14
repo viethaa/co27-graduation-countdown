@@ -27,7 +27,11 @@ window.Roll.PHOTOS = {
     file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/pop/day2.jpg',
     caption: 'The three spider-woman!'
   },
+  3: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/co27/day3.jpg',
+    caption: ''
+  },
 
-  // 3: { file: 'photos/003.jpg', caption: '' },
+  // 4: { file: 'photos/004.jpg', caption: '' },
 
 };
