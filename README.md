@@ -29,5 +29,4 @@ data/
   photos.js       
 
 photos/
-logo.png            
 ```
