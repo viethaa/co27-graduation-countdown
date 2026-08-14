@@ -28,12 +28,19 @@
       const date = T.dateOfDay(n);
       const past = n <= S.state.today;
 
-      const cell = document.createElement(past ? 'button' : 'div');
+      const cell = document.createElement('button');
       cell.className = 'cell';
       cell.setAttribute('role', 'listitem');
       if (date.getUTCDate() === 1) cell.classList.add('cell--month');
 
-      const label = `Day ${T.pad(n)} · ${T.tiny(date)}`;
+      const booking = Roll.bookings && Roll.bookings.forDay(n);
+      const bookable = !Roll.bookings || Roll.bookings.isBookable(n);
+      const label = `Day ${T.pad(n)} · ${T.tiny(date)}` +
+        (booking
+          ? ` · Booked by: ${booking.student_name}`
+          : bookable ? ' · Available' : ' · Unavailable for booking');
+      cell.classList.toggle('cell--booked', Boolean(booking));
+      cell.classList.toggle('cell--unavailable', !bookable);
 
       // a day's photo fills its frame, so the sheet reads as a strip of
       // film; days without one fall back to their status colour
@@ -48,14 +55,12 @@
         cell.appendChild(img);
       }
 
-      if (past) {
-        cell.type = 'button';
-        cell.setAttribute('aria-label', `${label}. Show this day.`);
-        cell.addEventListener('click', () => {
-          S.select(n);
-          $('day').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-      }
+      cell.type = 'button';
+      cell.setAttribute('aria-label', `${label}. Show this day.`);
+      cell.addEventListener('click', () => {
+        S.select(n);
+        $('day').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
 
       Roll.tooltip.attach(cell, label);
 
@@ -83,14 +88,11 @@
 
   function init() {
     build();
-    let lastToday = S.state.today;
     S.onChange(() => {
-      // a midnight rollover changes which frames exist as buttons
-      if (S.state.today !== lastToday) { lastToday = S.state.today; build(); }
-      else paint();
+      paint();
     });
   }
 
-  Roll.sheet = { init };
+  Roll.sheet = { init, build };
 
 })(window.Roll);

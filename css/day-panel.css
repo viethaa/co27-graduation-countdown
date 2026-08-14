@@ -73,6 +73,26 @@
 /* no empty line holding space open on days that have a photo */
 .day__hint:empty{ display:none; }
 
+.booking{ margin-top:1.15rem; max-width:32rem; }
+.booking__status{ margin:0; font-weight:600; color:var(--jade); }
+.booking__form,.upload{ margin-top:.75rem; }
+.booking__label{
+  display:block; margin-bottom:.35rem; font-family:var(--font-mono);
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--slate);
+}
+.booking__row{ display:flex; gap:.55rem; align-items:stretch; }
+.booking__input{
+  min-width:0; flex:1; border:1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  background:color-mix(in srgb, var(--paper) 88%, white); color:var(--ink);
+  font:inherit; padding:.62rem .75rem; border-radius:0;
+}
+.booking__message{ min-height:1.4em; margin:.55rem 0 0; font-size:.82rem; color:var(--jade); }
+.booking__message.is-error{ color:var(--amber); }
+.upload{ display:flex; align-items:center; gap:.55rem; flex-wrap:wrap; }
+.upload[hidden],.booking__form[hidden]{ display:none; }
+.upload__pick{ display:inline-block; }
+.upload__name{ max-width:15rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--slate); font-size:.8rem; }
+
 .day__today{
   margin-top:1rem;
   border:0; background:none; padding:0;
@@ -129,10 +149,10 @@
   font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
 }
 
-.plate__cap{
+  .plate__cap{
   margin:.85rem 0 0;
   color:var(--slate);
   font-size:.92rem;
   max-width:46ch;
-}
+  }
 .plate__cap:empty{ display:none; }

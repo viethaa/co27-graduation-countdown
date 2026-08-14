@@ -1,169 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Senior Graduation Countdown</title>
-<meta name="description" content="Concordia Hanoi, Class of 2027. A roll of film with one frame for every day of senior year, counting down to 4 June 2027.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Senior Graduation Countdown</title>
+  <meta name="description"
+    content="Concordia Hanoi, Class of 2027. A roll of film with one frame for every day of senior year, counting down to 4 June 2027.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/masthead.css">
-<link rel="stylesheet" href="css/counter.css">
-<link rel="stylesheet" href="css/day-panel.css">
-<link rel="stylesheet" href="css/sheet.css">
-<link rel="stylesheet" href="css/lightbox.css">
-<link rel="stylesheet" href="css/tooltip.css">
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/masthead.css">
+  <link rel="stylesheet" href="css/counter.css">
+  <link rel="stylesheet" href="css/day-panel.css">
+  <link rel="stylesheet" href="css/sheet.css">
+  <link rel="stylesheet" href="css/lightbox.css">
+  <link rel="stylesheet" href="css/tooltip.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
 
-<a class="skip" href="#sheet">Skip to the roll</a>
+  <a class="skip" href="#sheet">Skip to the roll</a>
 
-<header class="masthead" id="masthead">
-  <!-- alt is empty on purpose: the school name is right beside it as text,
+  <header class="masthead" id="masthead">
+    <!-- alt is empty on purpose: the school name is right beside it as text,
        so a screen reader announcing the logo too would just repeat itself -->
-  <img class="masthead__logo" src="logo.png" alt="" width="128" height="128" decoding="async">
-  <p class="masthead__school">Concordia Hanoi</p>
-  <p class="masthead__class">Class of 2027</p>
-</header>
+    <img class="masthead__logo" src="logo.png" alt="" width="128" height="128" decoding="async">
+    <p class="masthead__school">Concordia Hanoi</p>
+    <p class="masthead__class">Class of 2027</p>
+  </header>
 
-<main>
+  <main>
 
-  <!-- ─────────────  COUNTDOWN  ───────────── -->
-  <section class="hero section">
-    <div class="count" role="timer" aria-label="Time remaining until the last day of school">
-      <div class="count__lead">
-        <span class="count__days" id="dd">295</span>
-        <span class="count__days-lbl">days left</span>
+    <!-- ─────────────  COUNTDOWN  ───────────── -->
+    <section class="hero section">
+      <div class="count" role="timer" aria-label="Time remaining until the last day of school">
+        <div class="count__lead">
+          <span class="count__days" id="dd">295</span>
+          <span class="count__days-lbl">days left</span>
+        </div>
+
+        <div class="count__rest">
+          <div class="count__row">
+            <span class="count__num" id="hh">00</span>
+            <span class="count__lbl">hours</span>
+          </div>
+          <div class="count__row">
+            <span class="count__num" id="mm">00</span>
+            <span class="count__lbl">minutes</span>
+          </div>
+          <div class="count__row count__row--live">
+            <span class="count__num" id="ss">00</span>
+            <span class="count__lbl">seconds</span>
+          </div>
+        </div>
       </div>
 
-      <div class="count__rest">
-        <div class="count__row">
-          <span class="count__num" id="hh">00</span>
-          <span class="count__lbl">hours</span>
+      <h1 class="hero__line">
+        until the last bell on <strong id="finalDate">Fri 4 June 2027</strong>.
+      </h1>
+
+      <a class="cue" href="#day">
+        <span class="cue__text">School day</span>
+        <span class="cue__arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <!-- ─────────────  SCHOOL DAY  ───────────── -->
+    <section class="day section" id="day">
+      <div class="day__meta">
+        <p class="day__label">School day number:</p>
+
+        <div class="day__nav">
+          <button type="button" class="daybtn" id="dayPrev" aria-label="Previous school day">←</button>
+          <span class="day__num" id="dayNum">03</span>
+          <button type="button" class="daybtn" id="dayNext" aria-label="Next school day">→</button>
         </div>
-        <div class="count__row">
-          <span class="count__num" id="mm">00</span>
-          <span class="count__lbl">minutes</span>
+
+        <p class="day__date" id="dayDate">Thursday, 13 August 2026</p>
+        <p class="day__hint" id="dayHint">Not developed yet. Check back tonight.</p>
+        <div class="booking" id="booking" aria-live="polite">
+          <p class="booking__status" id="bookingStatus">Loading bookings...</p>
+          <form class="booking__form" id="bookingForm" hidden>
+            <label class="booking__label" for="studentName">Your name(s)</label>
+            <div class="booking__row">
+              <input class="booking__input" id="studentName" name="studentName" type="text" maxlength="200"
+                placeholder="Bob, Viet, and Ha" autocomplete="name" required>
+              <button class="btn" id="bookingSubmit" type="submit">Book this day</button>
+            </div>
+          </form>
+          <form class="upload" id="uploadForm" hidden>
+            <label class="btn upload__pick" for="photoFile">Choose photo</label>
+            <input class="sr-only" id="photoFile" type="file" accept="image/jpeg,image/png,image/webp" required>
+            <span class="upload__name" id="photoName">No file chosen</span>
+            <button class="btn" id="uploadSubmit" type="submit">Upload photo</button>
+          </form>
+          <p class="booking__message" id="bookingMessage" role="status"></p>
         </div>
-        <div class="count__row count__row--live">
-          <span class="count__num" id="ss">00</span>
-          <span class="count__lbl">seconds</span>
-        </div>
-      </div>
-    </div>
-
-    <h1 class="hero__line">
-      until the last bell on <strong id="finalDate">Fri 4 June 2027</strong>.
-    </h1>
-
-    <a class="cue" href="#day">
-      <span class="cue__text">School day</span>
-      <span class="cue__arrow" aria-hidden="true">↓</span>
-    </a>
-  </section>
-
-  <!-- ─────────────  SCHOOL DAY  ───────────── -->
-  <section class="day section" id="day">
-    <div class="day__meta">
-      <p class="day__label">School day number:</p>
-
-      <div class="day__nav">
-        <button type="button" class="daybtn" id="dayPrev" aria-label="Previous school day">←</button>
-        <span class="day__num" id="dayNum">03</span>
-        <button type="button" class="daybtn" id="dayNext" aria-label="Next school day">→</button>
-      </div>
-
-      <p class="day__date" id="dayDate">Thursday, 13 August 2026</p>
-      <p class="day__hint" id="dayHint">Not developed yet. Check back tonight.</p>
-      <button type="button" class="day__today" id="dayToday" hidden>Back to today</button>
-    </div>
-
-    <div class="day__stage">
-      <figure class="plate" id="plate">
-        <div class="plate__inner" id="plateInner">
-          <span class="plate__empty">
-            <span class="plate__empty-mark" aria-hidden="true">⌁</span>
-            <span class="plate__empty-text">Undeveloped</span>
-          </span>
-        </div>
-        <figcaption class="plate__cap" id="plateCap"></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ─────────────  CONTACT SHEET  ───────────── -->
-  <section class="roll" id="sheet">
-    <div class="roll__head">
-      <h2 class="roll__title">Calendar Sheet</h2>
-    </div>
-
-    <div class="sheet">
-      <div class="rebate rebate--top">
-        <span class="rebate__text" id="sheetDate">THU 13 AUG 2026</span>
+        <button type="button" class="day__today" id="dayToday" hidden>Back to today</button>
       </div>
 
-      <div class="grid" id="grid" role="list"></div>
+      <div class="day__stage">
+        <figure class="plate" id="plate">
+          <div class="plate__inner" id="plateInner">
+            <span class="plate__empty">
+              <span class="plate__empty-mark" aria-hidden="true">⌁</span>
+              <span class="plate__empty-text">No Uploaded Photo</span>
+            </span>
+          </div>
+          <figcaption class="plate__cap" id="plateCap"></figcaption>
+        </figure>
+      </div>
+    </section>
 
-      <div class="rebate rebate--bottom" aria-hidden="true"></div>
-    </div>
-  </section>
+    <!-- ─────────────  CONTACT SHEET  ───────────── -->
+    <section class="roll" id="sheet">
+      <div class="roll__head">
+        <h2 class="roll__title">Calendar Sheet</h2>
+      </div>
 
-</main>
+      <div class="sheet">
+        <div class="rebate rebate--top">
+          <span class="rebate__text" id="sheetDate">THU 13 AUG 2026</span>
+        </div>
 
-<footer class="foot">
-  <p class="foot__copy">
-    &copy; <span id="year">2026</span> Ha Bach Viet. All rights reserved.
-  </p>
-  <a class="foot__repo" id="repoLink" href="https://github.com/viethaa/co27-graduation-countdown" target="_blank" rel="noopener noreferrer">
-    <svg class="foot__icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+        <div class="grid" id="grid" role="list"></div>
+
+        <div class="rebate rebate--bottom" aria-hidden="true"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p class="foot__copy">
+      &copy; <span id="year">2026</span> Ha Bach Viet. All rights reserved.
+    </p>
+    <a class="foot__repo" id="repoLink" href="https://github.com/viethaa/co27-graduation-countdown" target="_blank"
+      rel="noopener noreferrer">
+      <svg class="foot__icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false">
+        <path fill="currentColor"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
         0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01
         1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
         0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09
         2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87
-        3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-    </svg>
-    <span>View on GitHub</span>
-  </a>
-</footer>
+        3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+      <span>View on GitHub</span>
+    </a>
+  </footer>
 
-<!-- ─────────────  LIGHTBOX  ───────────── -->
-<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbDay" hidden>
-  <div class="lb__panel">
-    <button type="button" class="lb__close" id="lbClose" aria-label="Close">✕</button>
-    <figure class="lb__fig">
-      <img id="lbImg" alt="">
-      <figcaption>
-        <p class="lb__day" id="lbDay">Day 03</p>
-        <p class="lb__date" id="lbDate"></p>
-        <p class="lb__cap" id="lbCap"></p>
-      </figcaption>
-    </figure>
-    <div class="lb__bar">
-      <button type="button" class="btn" id="lbPrev">← Earlier</button>
-      <button type="button" class="btn" id="lbNext">Later →</button>
+  <!-- ─────────────  LIGHTBOX  ───────────── -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbDay" hidden>
+    <div class="lb__panel">
+      <button type="button" class="lb__close" id="lbClose" aria-label="Close">✕</button>
+      <figure class="lb__fig">
+        <img id="lbImg" alt="">
+        <figcaption>
+          <p class="lb__day" id="lbDay">Day 03</p>
+          <p class="lb__date" id="lbDate"></p>
+          <p class="lb__cap" id="lbCap"></p>
+        </figcaption>
+      </figure>
+      <div class="lb__bar">
+        <button type="button" class="btn" id="lbPrev">← Earlier</button>
+        <button type="button" class="btn" id="lbNext">Later →</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="tip" id="tip" role="tooltip" hidden></div>
+  <div class="tip" id="tip" role="tooltip" hidden></div>
 
-<!-- load order matters: config → time → data → state → views → boot -->
-<script src="js/config.js"></script>
-<script src="js/time.js"></script>
-<script src="data/photos.js"></script>
-<script src="js/state.js"></script>
-<script src="js/tooltip.js"></script>
-<script src="js/lightbox.js"></script>
-<script src="js/day-panel.js"></script>
-<script src="js/sheet.js"></script>
-<script src="js/counter.js"></script>
-<script src="js/main.js"></script>
+  <!-- load order matters: config → time → data → state → views → boot -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/time.js"></script>
+  <script src="data/photos.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/photos.js"></script>
+  <script src="js/tooltip.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/day-panel.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

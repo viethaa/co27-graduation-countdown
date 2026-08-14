@@ -58,10 +58,11 @@
     $('dayDate').textContent = T.fmtLong.format(T.dateOfDay(n));
 
     $('dayPrev').disabled = n <= 1;
-    $('dayNext').disabled = n >= S.state.today;
+    $('dayNext').disabled = n >= T.TOTAL_DAYS;
     $('dayToday').hidden  = n === S.state.today;
 
     renderPlate(n);
+    if (Roll.bookings) Roll.bookings.render();
   }
 
   function init() {

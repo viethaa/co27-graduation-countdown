@@ -64,6 +64,9 @@
     align-self:center;
     margin-top:.85rem;
   }
+  .booking{ margin-inline:auto; width:min(100%,32rem); text-align:center; }
+  .booking__row{ flex-direction:column; }
+  .upload{ justify-content:center; }
   .plate__cap{
     text-align:center;
     margin-inline:auto;

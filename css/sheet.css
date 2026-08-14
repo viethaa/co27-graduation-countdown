@@ -87,6 +87,9 @@
 
 .cell--remaining{ background:color-mix(in srgb, var(--frame) 26%, var(--ink)); }
 
+.cell--booked{ box-shadow:inset -5px 0 var(--marigold); }
+.cell--unavailable{ filter:saturate(.55); }
+
 /* the day currently open in the panel above */
 .cell.is-selected{
   outline:2px solid var(--paper);
@@ -100,4 +103,3 @@
   position:absolute; left:-3px; top:0; bottom:0; width:1px;
   background:color-mix(in srgb, var(--marigold) 55%, transparent);
 }
-
