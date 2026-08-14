@@ -30,6 +30,7 @@
     Roll.dayPanel.init();
     Roll.sheet.init();
     Roll.counter.start();
+    Roll.bookings.init();
   }
 
   if (document.readyState === 'loading') {

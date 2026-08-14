@@ -21,7 +21,7 @@
   function emit() { listeners.forEach(fn => fn(state)); }
 
   function select(n) {
-    const clamped = Math.min(Math.max(n, 1), state.today);
+    const clamped = Math.min(Math.max(n, 1), T.TOTAL_DAYS);
     if (clamped === state.selected) return;
     state.selected = clamped;
     emit();
@@ -35,7 +35,11 @@
     emit();
   }
 
-  const photoFor = n => (Roll.PHOTOS && Roll.PHOTOS[n]) || null;
+  const photoFor = n => {
+    const booking = Roll.bookings && Roll.bookings.forDay(n);
+    if (booking && booking.photo_url) return { file: booking.photo_url, caption: '' };
+    return (Roll.PHOTOS && Roll.PHOTOS[n]) || null;
+  };
 
   // every day that has a picture, in order
   const shotDays = () => Object.keys(Roll.PHOTOS || {})
