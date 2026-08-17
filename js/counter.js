@@ -36,9 +36,8 @@
     $('mm').textContent = T.pad(Math.floor(rem / 60000) % 60);
     $('ss').textContent = T.pad(Math.floor(rem / 1000) % 60);
 
-    const day = T.currentDayNumber();
-    if (day !== Roll.state.state.today) {
-      Roll.state.setToday(day);
+    if (idx !== Roll.state.state.todayIdx) {
+      Roll.state.setToday(idx);
       stampToday();
     }
   }

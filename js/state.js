@@ -1,7 +1,12 @@
 /* ============================================================
-   STATE — what day the page is looking at, and small shared
-   helpers. `today` is the real school day; `selected` is the one
-   the day panel is showing, which the visitor can walk back.
+   STATE — what day the page is looking at.
+
+   `today`    the school day number in progress. On a weekend or a
+              break it holds at the last day that actually happened.
+   `todayIdx` the real calendar date, which the sheet marks even when
+              it isn't a school day.
+   `selected` the school day the panel is showing, which a visitor
+              can walk back through.
    ============================================================ */
 
 (function (Roll) {
@@ -10,13 +15,13 @@
   const T = Roll.time;
 
   const state = {
-    today: T.currentDayNumber(),
-    selected: T.currentDayNumber()
+    todayIdx: T.todayIndex(),
+    today: T.currentSchoolDay(),
+    selected: T.currentSchoolDay()
   };
 
   const listeners = [];
 
-  // subscribe to "the selected or current day changed"
   function onChange(fn) { listeners.push(fn); }
   function emit() { listeners.forEach(fn => fn(state)); }
 
@@ -28,22 +33,26 @@
   }
 
   // called when GMT+7 midnight rolls over
-  function setToday(n) {
+  function setToday(idx) {
     const wasOnToday = state.selected === state.today;
-    state.today = n;
-    if (wasOnToday) state.selected = n;
+    state.todayIdx = idx;
+    state.today = T.schoolDayOnOrBefore(idx);
+    if (wasOnToday) state.selected = state.today;
     emit();
   }
 
+  // is the real calendar date a school day, or are we off?
+  const isSchoolToday = () => T.isSchoolDay(state.todayIdx);
+
   const photoFor = n => (Roll.PHOTOS && Roll.PHOTOS[n]) || null;
 
-  // every day that has a picture, in order
+  // every school day that has a picture, in order
   const shotDays = () => Object.keys(Roll.PHOTOS || {})
     .map(Number)
-    .filter(n => Number.isInteger(n) && n >= 1 && n <= T.TOTAL_DAYS)
+    .filter(n => Number.isInteger(n) && n >= 1 && n <= T.SCHOOL_DAYS)
     .sort((a, b) => a - b);
 
-  Roll.state = { state, onChange, emit, select, setToday, photoFor, shotDays };
+  Roll.state = { state, onChange, emit, select, setToday, isSchoolToday, photoFor, shotDays };
   Roll.$ = id => document.getElementById(id);
 
 })(window.Roll);

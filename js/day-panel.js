@@ -61,6 +61,17 @@
     $('dayNext').disabled = n >= S.state.today;
     $('dayToday').hidden  = n === S.state.today;
 
+    // on a weekend or a break the panel holds at the last school day,
+    // so say why rather than letting the date look stale
+    const off = !S.isSchoolToday() && n === S.state.today;
+    $('dayOff').hidden = !off;
+    if (off) {
+      const kind = T.kindOf(S.state.todayIdx);
+      $('dayOff').textContent = kind === T.KIND.WEEKEND
+        ? 'No school this weekend — showing the last school day.'
+        : 'No school today — showing the last school day.';
+    }
+
     renderPlate(n);
   }
 

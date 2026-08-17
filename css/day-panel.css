@@ -73,6 +73,18 @@
 /* no empty line holding space open on days that have a photo */
 .day__hint:empty{ display:none; }
 
+/* shown only on a weekend or a break, so the held date makes sense */
+.day__off{
+  margin:.55rem 0 0;
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.08em;
+  color:var(--amber);
+  max-width:34ch;
+  line-height:1.6;
+}
+.day__off[hidden]{ display:none; }
+
 .day__today{
   margin-top:1rem;
   border:0; background:none; padding:0;

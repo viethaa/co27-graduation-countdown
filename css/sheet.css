@@ -64,13 +64,16 @@
 .cell img{ width:100%; height:100%; object-fit:cover; display:block; }
 .cell.is-broken img{ display:none; }
 
-/* status, shown wherever there is no photo */
+/* ── frame states ──────────────────────────────────────────
+   Only three, because only school days get a frame at all. */
+
 .cell--done{ background:var(--jade); cursor:pointer; }
 .cell--done:hover{ transform:scale(1.35); z-index:5; outline-color:var(--marigold); }
 
+.cell--remaining{ background:var(--f-remaining); }
+
 .cell--today{
   background:var(--marigold);
-  cursor:pointer;
   outline:2px solid var(--marigold);
   outline-offset:2px;
   z-index:4;
@@ -84,8 +87,6 @@
   70%  { box-shadow:0 0 0 9px transparent; }
   100% { box-shadow:0 0 0 0 transparent; }
 }
-
-.cell--remaining{ background:color-mix(in srgb, var(--frame) 26%, var(--ink)); }
 
 /* the day currently open in the panel above */
 .cell.is-selected{

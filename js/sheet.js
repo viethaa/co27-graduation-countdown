@@ -1,11 +1,15 @@
 /* ============================================================
-   CONTACT SHEET — one frame per school day for the whole year.
+   CALENDAR SHEET — one frame per school day, and nothing else.
 
-   A frame's colour is its status, not whether it has a picture:
-     completed  every day already lived
-     today      the day in progress
-     remaining  still to come
-   A photo, when there is one, fills its frame.
+   Weekends and the dates in CONFIG.noSchool are left out entirely:
+   they can never hold a photo, so a frame for them would be dead
+   space. They still matter to js/time.js, which uses them to decide
+   what counts as a school day in the first place.
+
+   A frame's colour says where the day sits:
+     completed   already lived — a photo fills it once you add one
+     today       the day in progress
+     remaining   still to come
    ============================================================ */
 
 (function (Roll) {
@@ -15,7 +19,7 @@
   const S = Roll.state;
   const $ = Roll.$;
 
-  const cells = [];
+  const cells = [];   // keyed by school day number
 
   function build() {
     const grid = $('grid');
@@ -23,20 +27,26 @@
     cells.length = 0;
 
     const frag = document.createDocumentFragment();
+    let lastMonth = null;
 
-    for (let n = 1; n <= T.TOTAL_DAYS; n++) {
+    for (let n = 1; n <= T.SCHOOL_DAYS; n++) {
       const date = T.dateOfDay(n);
       const past = n <= S.state.today;
 
       const cell = document.createElement(past ? 'button' : 'div');
       cell.className = 'cell';
       cell.setAttribute('role', 'listitem');
-      if (date.getUTCDate() === 1) cell.classList.add('cell--month');
+
+      // the first school day of each month, since the 1st itself is
+      // often a weekend and wouldn't appear on this sheet at all
+      const month = date.getUTCFullYear() * 12 + date.getUTCMonth();
+      if (month !== lastMonth) {
+        if (lastMonth !== null) cell.classList.add('cell--month');
+        lastMonth = month;
+      }
 
       const label = `Day ${T.pad(n)} · ${T.tiny(date)}`;
 
-      // a day's photo fills its frame, so the sheet reads as a strip of
-      // film; days without one fall back to their status colour
       const p = S.photoFor(n);
       if (p) {
         const img = document.createElement('img');
@@ -71,7 +81,7 @@
   function paint() {
     const { today, selected } = S.state;
 
-    for (let n = 1; n <= T.TOTAL_DAYS; n++) {
+    for (let n = 1; n <= T.SCHOOL_DAYS; n++) {
       const c = cells[n];
       if (!c) continue;
       c.classList.toggle('cell--done',      n <  today);
@@ -85,7 +95,7 @@
     build();
     let lastToday = S.state.today;
     S.onChange(() => {
-      // a midnight rollover changes which frames exist as buttons
+      // a rollover changes which frames exist as buttons
       if (S.state.today !== lastToday) { lastToday = S.state.today; build(); }
       else paint();
     });

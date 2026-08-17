@@ -17,6 +17,10 @@
   --marigold:#F0A730;
   /* marigold deepened until it is legible as text on paper */
   --amber:   #C25A18;
+
+  /* days still to come: quiet, so the jade of days already lived reads
+     as the thing filling up */
+  --f-remaining: color-mix(in srgb, var(--frame) 20%, var(--ink));
   --frame:   #C9CFC6;
   --slate:   #59625D;
   --slate-lo:#8A928C;
