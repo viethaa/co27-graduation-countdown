@@ -45,6 +45,11 @@ window.Roll.PHOTOS = {
     caption: 'Justin^2'
   },
 
-  // 7: { file: 'photos/007.jpg', caption: '' },
+  7: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/co27/day7.jpg',
+    caption: ''
+  },
+
+  // 8: { file: 'photos/008.jpg', caption: '' },
 
 };
