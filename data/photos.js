@@ -55,6 +55,11 @@ window.Roll.PHOTOS = {
     caption: ''
   },
 
-  // 9: { file: 'photos/009.jpg', caption: '' },
+  9: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/co27/day9.jpg',
+    caption: ''
+  },
+
+  // 10: { file: 'photos/010.jpg', caption: '' },
 
 };
