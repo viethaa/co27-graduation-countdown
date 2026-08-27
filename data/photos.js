@@ -60,6 +60,15 @@ window.Roll.PHOTOS = {
     caption: ''
   },
 
-  // 10: { file: 'photos/010.jpg', caption: '' },
+  10: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/co27/day10.jpg',
+    caption: ''
+  },
+  11: {
+    file: 'https://hearts2hands.s3.ap-southeast-2.amazonaws.com/co27/day11.jpg',
+    caption: ''
+  },
+
+  // 12: { file: 'photos/012.jpg', caption: '' },
 
 };
