@@ -26,6 +26,6 @@ window.Roll.CONFIG = {
      here. Everything else follows: school day numbers skip these dates,
      and the calendar sheet marks them as no-school. */
   noSchool: [
-
+    ['2026-08-31', '2026-09-02'],   // break — day 14 resumes Thu 3 Sep
   ]
 };
